@@ -731,7 +731,7 @@ impl CommandRunner {
   }
 }
 
-fn make_execute_request(
+pub fn make_execute_request(
   req: &ExecuteProcessRequest,
   instance_name: &Option<String>,
   cache_key_gen_version: &Option<String>,

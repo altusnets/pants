@@ -37,6 +37,7 @@ use store::UploadSummary;
 
 use async_semaphore::AsyncSemaphore;
 
+pub mod cache;
 pub mod local;
 pub mod remote;
 
