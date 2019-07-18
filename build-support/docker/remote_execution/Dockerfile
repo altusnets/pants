@@ -12,7 +12,8 @@ RUN apt-get install -y \
   libssl-dev \
   libsqlite3-dev \
   libffi-dev \
-  python-openssl
+  python-openssl \
+  pkg-config
 
 # Even though the image already comes installed with Python 2.7, 3.5, and 3.6, we install our own
 # via Pyenv because we need Python 3.7 and want consistency in how we install them.
