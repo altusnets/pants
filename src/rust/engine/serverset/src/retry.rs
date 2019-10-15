@@ -39,7 +39,7 @@ impl<T: Clone + Send + Sync + 'static> Retry<T> {
         .map(futures::future::Loop::Break)
         .or_else(move |err| {
           if i >= times {
-            Err(format!("Failed after {} retries; last failure: {}", i, err))
+            Err(format!("Failed after {} attempts; last failure: {}", i, err))
           } else {
             Ok(futures::future::Loop::Continue(i + 1))
           }
@@ -93,7 +93,7 @@ mod tests {
     )
     .unwrap();
     assert_eq!(
-      Err(format!("Failed after 5 retries; last failure: bad")),
+      Err(format!("Failed after 5 attempts; last failure: bad")),
       runtime.block_on(Retry(s).all_errors_immediately(|v: Result<u8, _>| v, 5))
     );
   }

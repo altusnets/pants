@@ -326,7 +326,10 @@ fn execute(top_match: &clap::ArgMatches<'_>) -> Result<(), ExitError> {
               1.2,
               std::time::Duration::from_secs(20),
             )?,
-            value_t!(top_match.value_of("rpc-attempts"), usize).expect("Bad rpc-attempts flag"),
+            // Subtract 1 to convert "attempts" into "retries".
+            value_t!(top_match.value_of("rpc-attempts"), usize)
+              .expect("Bad rpc-attempts flag")
+              .saturating_sub(1),
             value_t!(top_match.value_of("connection-limit"), usize)
               .expect("Bad connection-limit flag"),
           ),
